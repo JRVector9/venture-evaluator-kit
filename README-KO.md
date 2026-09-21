@@ -8,6 +8,8 @@
 
 버전 `1.1.1` · 루브릭 `gsr-plus-1.0` · 설치 문서 확인일 `2026-09-21`
 
+**다운로드:** [GitHub 릴리스 v1.1.1](https://github.com/JRVector9/venture-evaluator-kit/releases/tag/v1.1.1) · [최신 릴리스](https://github.com/JRVector9/venture-evaluator-kit/releases/latest)
+
 이 패키지는 GSR, Anthropic, OpenAI의 공식 제품이나 투자 심사 도구가 아닙니다.
 사용자가 제시한 3S와 사업 논점을 재사용 가능한 자체 분석 지침으로 구성했습니다.
 
@@ -34,7 +36,7 @@ KPMG·McKinsey의 로고·서명·서체 파일은 포함하지 않으며 그 �
 
 ### 기존 1.0.0 설치본 업데이트
 
-새 `venture-evaluator-kit-v1.1.1.zip`을 풀고 다음을 실행합니다.
+새 [`venture-evaluator-kit-v1.1.1.zip`](https://github.com/JRVector9/venture-evaluator-kit/releases/download/v1.1.1/venture-evaluator-kit-v1.1.1.zip)을 풀고 다음을 실행합니다.
 압축 안의 폴더명은 이전과 같이 `venture-evaluator-kit`입니다.
 
 ```bash
@@ -61,7 +63,7 @@ bash install.sh --action check --target both
 
 ## 가장 빠른 설치: macOS / Linux의 Claude Code + Codex
 
-다운로드한 `venture-evaluator-kit-v1.1.1.zip`을 풀고, **이 README와 install.sh가 있는 폴더**에서
+[릴리스](https://github.com/JRVector9/venture-evaluator-kit/releases/tag/v1.1.1)에서 받은 [`venture-evaluator-kit-v1.1.1.zip`](https://github.com/JRVector9/venture-evaluator-kit/releases/download/v1.1.1/venture-evaluator-kit-v1.1.1.zip)을 풀고, **이 README와 install.sh가 있는 폴더**에서
 터미널을 엽니다. 표준 라이브러리만 사용하는 Python 3.9 이상이 필요합니다.
 
 ```bash
@@ -152,7 +154,7 @@ WSL에서 실행하면 WSL 홈에 설치됩니다. Windows 호스트에 설치�
 
 ## Claude 웹/일반 데스크톱에서 사용
 
-웹 업로드에는 설치기 포함 ZIP이 아니라 **`venture-evaluator-v1.1.1.zip`**을 사용합니다.
+웹 업로드에는 설치기 포함 ZIP이 아니라 **[`venture-evaluator-v1.1.1.zip`](https://github.com/JRVector9/venture-evaluator-kit/releases/download/v1.1.1/venture-evaluator-v1.1.1.zip)**을 사용합니다.
 이 ZIP은 `venture-evaluator/SKILL.md`가 있는 스킬 폴더 하나만 포함합니다.
 
 공식 도움말 확인 기준 절차:
