@@ -472,7 +472,7 @@ bash install.sh --action uninstall --target both
 
 ```text
 venture-evaluator-kit/
-  README-KO.md
+  README.md
   install.sh
   install.py
   TEST-REPORT.md

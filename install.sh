@@ -7,6 +7,6 @@ if command -v python3 >/dev/null 2>&1; then
 elif command -v python >/dev/null 2>&1; then
   exec python "$SCRIPT_DIR/install.py" "$@"
 else
-  printf '%s\n' "Python 3.9+ was not found. Use the manual folder-copy method in README-KO.md." >&2
+  printf '%s\n' "Python 3.9+ was not found. Use the manual folder-copy method in README.md." >&2
   exit 1
 fi
