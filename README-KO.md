@@ -13,6 +13,25 @@
 이 패키지는 GSR, Anthropic, OpenAI의 공식 제품이나 투자 심사 도구가 아닙니다.
 사용자가 제시한 3S와 사업 논점을 재사용 가능한 자체 분석 지침으로 구성했습니다.
 
+## 빠른 시작
+
+1. **설치** — [`venture-evaluator-kit-v1.1.1.zip`](https://github.com/JRVector9/venture-evaluator-kit/releases/download/v1.1.1/venture-evaluator-kit-v1.1.1.zip)을 받아 풀고, 푼 폴더에서 실행합니다. Python 3.9 이상이 필요합니다.
+
+   ```bash
+   bash install.sh --target both
+   ```
+
+2. **요청** — 평가할 프로젝트 폴더에서 Claude Code(또는 Codex)를 열고 대화 입력창에 적습니다.
+
+   ```text
+   /venture-evaluator evaluate docs/사업계획서.pdf와 README.md를 읽고 사업을 평가해줘.
+   ```
+
+3. **확인** — `.venture/reports/`에 생긴 `.html` 파일을 브라우저로 엽니다. 같은 이름의 `.json`은
+   보고서를 다시 만들 때 쓰는 원본 데이터입니다.
+
+Claude 웹에서 쓰려면 아래 **Claude 웹/일반 데스크톱에서 사용**을, 요청 문장 예시는 **사용 예**를 보세요.
+
 ## 1.1.0에서 달라진 것
 
 | 변경 | 내용 |
@@ -171,61 +190,140 @@ ZIP 업로드 후 활성화합니다. `Code execution and file creation` 설정�
 
 라고 요청하면 됩니다. 설치한 스킬에 사용자 사업 내용이 미리 들어 있지는 않습니다.
 
-## 실행 예시
+## 사용법
 
-아래 명령은 **터미널 명령이 아니라 Claude Code/Codex의 대화 입력창**에 입력합니다.
-실제 파일은 해당 세션에서 접근 가능한 위치에 있어야 합니다.
-
-### Claude Code
+### 기본 형식
 
 ```text
-/venture-evaluator evaluate 이 프로젝트의 README와 PRD를 읽고 사업을 평가해줘.
+/venture-evaluator [모드] [옵션...] 요청 내용     ← Claude Code
+$venture-evaluator [모드] [옵션...] 요청 내용     ← Codex
 ```
 
+아래 명령은 **터미널이 아니라 Claude Code/Codex의 대화 입력창**에 입력합니다.
+모드와 옵션은 생략할 수 있고, 생략하면 `evaluate` · `founder` 관점 · HTML 보고서로 동작합니다.
+“venture-evaluator를 사용해서 이 사업을 평가해줘”처럼 자연어로 요청해도 됩니다.
+Codex CLI/IDE에서는 `/skills`로 골라도 됩니다.
+
+### 모드
+
+| 모드 | 언제 쓰나 | 결과 |
+|---|---|---|
+| `evaluate` (기본) | 사업 하나를 평가할 때 | 비교표 1행, 강점·위험, 개선안, 가장 작은 검증 실험 |
+| `portfolio` | 여러 사업·아이디어를 같은 기준으로 비교할 때 | 사업별 1행 비교표와 사업별 분석 |
+| `redesign` | 약점을 먼저 보고 구조를 바꾸는 방안이 필요할 때 | 현재 평가 + 구조 변경안 최대 3개 |
+| `validate` | 돈·시간을 쓰기 전에 핵심 가설을 확인하고 싶을 때 | 실험, 성공·중단 기준, 예산 |
+| `update` | 이전 평가 이후 새 자료(KPI 등)가 생겼을 때 | 이전 대비 바뀐 판정과 그 근거 |
+| `context` | 긴 대화·자료를 다른 세션으로 옮길 맥락 파일로 정리할 때 | `venture-context.md` 초안 (저장은 요청할 때만) |
+| `init` | 프로젝트에 평가용 빈 폴더 구조를 만들 때 | `.venture/` 폴더와 빈 템플릿 |
+
+### 옵션
+
+| 옵션 | 뜻 |
+|---|---|
+| `founder` (기본) / `investor` | 창업자 관점(구조 개선 중심) / 투자 검토 관점(반대 근거·실사 질문 중심) |
+| `brief` / `deep` | 표와 핵심만 / 12항목 근거표·실험·예산까지 |
+| `offline` | 웹 검색 등 외부 확인을 하지 않습니다. 최신 정보는 “최신 확인 안 됨”으로 표시합니다. AI 앱 자체를 인터넷 없이 쓴다는 뜻은 아닙니다. |
+| `html` (기본) / `md` / `no-save` | HTML + JSON 파일 / Markdown 출력 / 파일 없이 대화로만 |
+
+### 평가 자료 주는 법
+
+- README, PRD, 사업계획서, KPI 파일처럼 읽을 자료의 경로를 요청에 적습니다.
+- PDF·DOCX 등은 사용하는 앱이 읽을 수 있어야 합니다. 읽지 못하면 스킬이 텍스트로 달라고 요청하고, 내용을 추측하지 않습니다.
+- 자료가 없어도 한두 줄 설명으로 1차 평가를 받을 수 있습니다. 판단할 근거가 없는 항목은 `?`로 남습니다.
+- 스킬은 지정하지 않은 다른 폴더나 계정의 과거 대화를 스스로 찾아 읽지 않습니다.
+
+### 결과 읽는 법
+
+| 기호 | 뜻 |
+|---|---|
+| ◎ | 강한 구조이고 구체적인 근거가 있음 |
+| ○ | 유리하지만 검증할 조건이 남음 |
+| △ | 근거가 있는 약점 또는 구조적 위험 |
+| × | 구조적으로 맞지 않거나 반증이 있음 |
+| ? | 판단할 근거가 부족함 (약하다는 뜻이 아님) |
+
+- `△→○`처럼 화살표가 있으면 오른쪽은 **조건을 충족했을 때의 가설**입니다. 조건은 보고서의 12개 항목 상세에 적혀 있습니다.
+- 마지막 열 **GSR+ 잠재력**은 `높음(조건부)` / `중간(검증 필요)` / `제한적(현금흐름형)` / `판단 보류` 중 하나이며, 성공 확률이나 투자 의견이 아닙니다.
+- 본문의 `[E1]` 같은 표시를 누르면 보고서 끝의 근거 목록으로 이동합니다. 근거마다 관측 · 사용자진술 · 추론 · 가정 · 미확인 중 무엇인지 표시됩니다.
+- 보고서가 어떻게 생겼는지는 패키지 안의 `examples/venture-report-sample.html`(가상 사업 3개로 만든 샘플)을 브라우저로 열어 보세요.
+
+## 사용 예
+
+아래는 Claude Code 기준입니다. Codex에서는 `/venture-evaluator` 대신 `$venture-evaluator`로 시작합니다.
+
+### 1. 사업계획서 하나 평가하기
+
 ```text
-/venture-evaluator portfolio 이 대화에서 논의한 사업들을 위 표 형식으로 비교해줘.
+/venture-evaluator evaluate docs/사업계획서.pdf와 README.md를 읽고 평가해줘.
 ```
 
-### Codex
+비교표 1행, 강한 이유와 핵심 위험, 가장 먼저 해 볼 검증 실험이 담긴 HTML 보고서가 만들어집니다.
+
+### 2. 아이디어 여러 개 비교하기
 
 ```text
-$venture-evaluator evaluate 이 프로젝트의 README와 PRD를 읽고 사업을 평가해줘.
+/venture-evaluator portfolio brief
+1) 동네 세탁소 예약 앱  2) 소규모 팀 납품 요청 관리 SaaS  3) 파일 형식 변환 유틸리티
+한 줄 설명뿐이니 모르는 항목은 ?로 남겨줘.
 ```
 
+사업별 1행 비교표가 나옵니다. 잠재력과 지금 실행하기 좋은 순서는 따로 표시합니다.
+
+### 3. 투자자 관점으로 약점 찾기
+
 ```text
-$venture-evaluator portfolio .venture/venture-context.md brief
+/venture-evaluator evaluate investor deep
+첨부한 IR 자료를 읽고 반대 근거와 실사 질문을 정리해줘.
 ```
 
-Codex CLI/IDE에서 `/skills`로 선택할 수도 있습니다. 대화형 자연어로
-“venture-evaluator를 사용해 이 사업을 평가해줘”라고 요청하는 방법도 있습니다.
-
-### 공통 요청
+### 4. 돈을 쓰기 전에 검증 계획 세우기
 
 ```text
-venture-evaluator redesign: 현재 사업의 약점을 먼저 보여주고,
-고객별 개발 없이 확장하도록 바꾸는 방안을 비교해줘.
-```
-
-```text
-venture-evaluator validate: 현금 예산 500만원, 내가 개발, 4주 이내.
+/venture-evaluator validate
+현금 예산 500만원, 개발은 내가 직접, 4주 안에.
 유료 수요를 확인할 가장 작은 실험과 중단 기준을 잡아줘.
 ```
 
+가설, 대상·기간, 성공·중단 기준, 일회성·월 반복 비용을 나눈 예산표가 나옵니다.
+창업자 본인의 노동 시간은 0원으로 숨기지 않고 따로 적습니다.
+
+### 5. 구조 바꾸기
+
 ```text
-venture-evaluator evaluate deep offline:
+/venture-evaluator redesign
+지금은 고객마다 맞춤 개발을 하고 있어. 맞춤 개발 없이 확장하는 방안을 비교해줘.
+```
+
+### 6. 한 달 뒤 다시 평가하기
+
+```text
+/venture-evaluator update
+.venture/reports/에 있는 지난 평가 JSON과 이번 달 KPI.csv를 비교해서 달라진 판정의 근거를 설명해줘.
+```
+
+새 근거가 없으면 판정을 억지로 바꾸지 않고 그 사실을 적습니다.
+
+### 7. 외부 조사 없이 첨부 자료만으로
+
+```text
+/venture-evaluator evaluate deep offline
 첨부 자료만으로 평가하고, 최신 경쟁 정보는 확인하지 않았다고 표시해줘.
 ```
 
+### 8. 긴 대화를 맥락 파일로 옮기기
+
 ```text
-venture-evaluator update:
-이전 평가와 이번 달 KPI를 비교하고 달라진 판정의 근거를 설명해줘.
-결과를 .venture/evaluations/에 새 파일로 저장해줘.
+/venture-evaluator context
+이 대화에서 내가 채택한 결정과 AI가 제안만 한 아이디어를 구분해서 정리해줘.
+확인되지 않은 숫자는 미확인으로 남기고, .venture/venture-context.md에 저장해줘.
 ```
 
-`offline`은 외부 자료 확인을 하지 않는 모드입니다. AI 호스트 자체를 인터넷 없이
-실행한다는 의미가 아닙니다. **평가 모드는 HTML+JSON 작성이 기본**입니다.
-`context`의 기존 맥락 저장·갱신은 별도 요청이 있어야 합니다. 파일이 필요 없으면
-`md` 또는 `no-save`를 요청하세요.
+### 9. 파일 없이 대화로만
+
+```text
+/venture-evaluator evaluate brief no-save
+한 줄 아이디어: 반려견 산책 대행 구독 서비스.
+```
 
 ## HTML 보고서 사용
 
@@ -299,7 +397,7 @@ Claude Code 개인 설치 경로는 `~/.claude/skills/venture-evaluator/`입니�
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
 ```
 
-50개 설치·렌더러 테스트는 Python 표준 라이브러리만 사용합니다.
+51개 설치·렌더러 테스트는 Python 표준 라이브러리만 사용합니다.
 선택적 `tests/browser_smoke.py`는 개발 검수용이며 Playwright와 Chromium이 별도로
 필요합니다. 정상 설치·보고서 생성·열람에는 Playwright가 필요하지 않습니다.
 
