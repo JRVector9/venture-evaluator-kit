@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 NAME = "venture-evaluator"
-VERSION = "1.1.1"
+VERSION = "1.1.2"
 MARKER = ".venture-evaluator-install.json"
 SOURCE = Path(__file__).resolve().parent / NAME
 REQUIRED = (

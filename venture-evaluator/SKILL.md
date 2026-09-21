@@ -11,7 +11,7 @@ description: >-
   Do not use for stock picks, political rankings, generic coding, or merely
   rewriting a document without a business-evaluation request.
 metadata:
-  version: "1.1.1"
+  version: "1.1.2"
   rubric-version: "gsr-plus-1.0"
   language: "ko"
 ---

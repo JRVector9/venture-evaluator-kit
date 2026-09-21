@@ -21,7 +21,7 @@ from typing import Any, Dict, List, Optional
 from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.1.1'
+VERSION = '1.1.2'
 DIMENSIONS = (
     ('significant', 'Significant', '시장 기회'),
     ('scalable', 'Scalable', '확장성'),
