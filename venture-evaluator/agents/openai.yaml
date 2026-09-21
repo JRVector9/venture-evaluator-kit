@@ -1,0 +1,6 @@
+interface:
+  display_name: "Venture Evaluator · Report Edition"
+  short_description: "GSR+ assessment with white consulting-style HTML reports"
+  default_prompt: "Use $venture-evaluator to evaluate the provided business plans or available project context. Create the final standalone white consulting-style HTML report and its JSON source, including the GSR+ comparison table, present evidence versus conditional potential, and a small validation experiment. Use the bundled render_report.py when available; provide the created report link. Respond in Korean unless requested otherwise."
+policy:
+  allow_implicit_invocation: true

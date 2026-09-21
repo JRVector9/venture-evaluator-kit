@@ -1,0 +1,55 @@
+test_all_skill_links_resolve (test_installation.InstallationTests.test_all_skill_links_resolve) ... ok
+test_both_install_and_check (test_installation.InstallationTests.test_both_install_and_check) ... ok
+test_conflict_refuses_all_targets_before_writing (test_installation.InstallationTests.test_conflict_refuses_all_targets_before_writing) ... ok
+test_destination_symlink_rejected (test_installation.InstallationTests.test_destination_symlink_rejected) ... ok
+test_dry_run_writes_nothing (test_installation.InstallationTests.test_dry_run_writes_nothing) ... ok
+test_integrity_check_detects_edits (test_installation.InstallationTests.test_integrity_check_detects_edits) ... ok
+test_manual_copy_not_removed (test_installation.InstallationTests.test_manual_copy_not_removed) ... ok
+test_missing_project_is_not_created (test_installation.InstallationTests.test_missing_project_is_not_created) ... ok
+test_model_eval_cases_are_valid_json (test_installation.InstallationTests.test_model_eval_cases_are_valid_json) ... ok
+test_project_scope_with_unicode_and_spaces (test_installation.InstallationTests.test_project_scope_with_unicode_and_spaces) ... ok
+test_repeat_is_idempotent (test_installation.InstallationTests.test_repeat_is_idempotent) ... ok
+test_replace_preserves_old_version (test_installation.InstallationTests.test_replace_preserves_old_version) ... ok
+test_shell_wrapper_runs_from_another_directory (test_installation.InstallationTests.test_shell_wrapper_runs_from_another_directory) ... ok
+test_single_target (test_installation.InstallationTests.test_single_target) ... ok
+test_uninstall_is_reversible (test_installation.InstallationTests.test_uninstall_is_reversible) ... ok
+test_unrelated_folder_not_replaced (test_installation.InstallationTests.test_unrelated_folder_not_replaced) ... ok
+test_workspace_dry_run (test_installation.InstallationTests.test_workspace_dry_run) ... ok
+test_workspace_non_overwrite (test_installation.InstallationTests.test_workspace_non_overwrite) ... ok
+test_all_evidence_anchors_exist_and_ids_unique (test_report.ReportTests.test_all_evidence_anchors_exist_and_ids_unique) ... ok
+test_assessment_does_not_inherit_demo_banner (test_report.ReportTests.test_assessment_does_not_inherit_demo_banner) ... ok
+test_bad_date_rejected (test_report.ReportTests.test_bad_date_rejected) ... ok
+test_budget_optional (test_report.ReportTests.test_budget_optional) ... ok
+test_budget_period_and_totals (test_report.ReportTests.test_budget_period_and_totals) ... ok
+test_change_log_rendered (test_report.ReportTests.test_change_log_rendered) ... ok
+test_cli_output_unicode_and_non_overwrite (test_report.ReportTests.test_cli_output_unicode_and_non_overwrite) ... ok
+test_credential_and_control_urls_rejected (test_report.ReportTests.test_credential_and_control_urls_rejected) ... ok
+test_duplicate_source_ids_rejected (test_report.ReportTests.test_duplicate_source_ids_rejected) ... ok
+test_duplicate_venture_ids_rejected (test_report.ReportTests.test_duplicate_venture_ids_rejected) ... ok
+test_future_rating_requires_condition (test_report.ReportTests.test_future_rating_requires_condition) ... ok
+test_host_only_citation_rejected (test_report.ReportTests.test_host_only_citation_rejected) ... ok
+test_https_source_with_escaped_query (test_report.ReportTests.test_https_source_with_escaped_query) ... ok
+test_invalid_budget_values_rejected (test_report.ReportTests.test_invalid_budget_values_rejected) ... ok
+test_invalid_rating_rejected (test_report.ReportTests.test_invalid_rating_rejected) ... ok
+test_known_rating_requires_evidence (test_report.ReportTests.test_known_rating_requires_evidence) ... ok
+test_missing_evidence_reference_rejected (test_report.ReportTests.test_missing_evidence_reference_rejected) ... ok
+test_missing_extended_dimensions_are_unknown (test_report.ReportTests.test_missing_extended_dimensions_are_unknown) ... ok
+test_no_font_binaries_packaged (test_report.ReportTests.test_no_font_binaries_packaged) ... ok
+test_no_remote_assets_or_dynamic_imports (test_report.ReportTests.test_no_remote_assets_or_dynamic_imports) ... ok
+test_nonfinite_json_rejected (test_report.ReportTests.test_nonfinite_json_rejected) ... ok
+test_orphan_experiment_rejected (test_report.ReportTests.test_orphan_experiment_rejected) ... ok
+test_render_inside_skill_rejected (test_report.ReportTests.test_render_inside_skill_rejected) ... ok
+test_report_renders_same_bytes (test_report.ReportTests.test_report_renders_same_bytes) ... ok
+test_sample_and_empty_template_validate (test_report.ReportTests.test_sample_and_empty_template_validate) ... ok
+test_sample_is_clearly_labeled (test_report.ReportTests.test_sample_is_clearly_labeled) ... ok
+test_single_venture_without_optional_sections (test_report.ReportTests.test_single_venture_without_optional_sections) ... ok
+test_unknown_budget_not_treated_as_zero (test_report.ReportTests.test_unknown_budget_not_treated_as_zero) ... ok
+test_unknown_field_rejected (test_report.ReportTests.test_unknown_field_rejected) ... ok
+test_unsafe_source_schemes_rejected (test_report.ReportTests.test_unsafe_source_schemes_rejected) ... ok
+test_user_html_is_escaped (test_report.ReportTests.test_user_html_is_escaped) ... ok
+test_validate_only_writes_nothing (test_report.ReportTests.test_validate_only_writes_nothing) ... ok
+
+----------------------------------------------------------------------
+Ran 50 tests in 16.792s
+
+OK

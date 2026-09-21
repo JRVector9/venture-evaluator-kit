@@ -1,0 +1,47 @@
+{
+  "status": "PASS",
+  "from": "1.0.0 original conversation archive",
+  "to": "1.1.0",
+  "checks": [
+    {
+      "step": "Install actual v1.0.0 on both hosts",
+      "returncode": 0,
+      "stdout": "Venture Evaluator 1.0.0 | action=install | scope=user\nclaude: install -> /tmp/venture-v1-migration-cwpu0txz/user home/.claude/skills/venture-evaluator\ncodex: install -> /tmp/venture-v1-migration-cwpu0txz/user home/.agents/skills/venture-evaluator\nDone. Reopen/refresh your host if the skill is not visible.\nClaude Code: /venture-evaluator | Codex: $venture-evaluator",
+      "stderr": ""
+    },
+    {
+      "step": "Refuse unapproved overwrite of v1.0.0",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "ERROR: Existing skill differs: /tmp/venture-v1-migration-cwpu0txz/user home/.claude/skills/venture-evaluator\nReview changes, then use --replace to back it up and install."
+    },
+    {
+      "step": "Upgrade using --replace",
+      "returncode": 0,
+      "stdout": "Venture Evaluator 1.1.0 | action=install | scope=user\nclaude: replace -> /tmp/venture-v1-migration-cwpu0txz/user home/.claude/skills/venture-evaluator\n  Previous version preserved: /tmp/venture-v1-migration-cwpu0txz/user home/.claude/skill-backups/venture-evaluator-20260921T043006Z-67443514\ncodex: replace -> /tmp/venture-v1-migration-cwpu0txz/user home/.agents/skills/venture-evaluator\n  Previous version preserved: /tmp/venture-v1-migration-cwpu0txz/user home/.agents/skill-backups/venture-evaluator-20260921T043006Z-88a4b21e\nDone. Reopen/refresh your host if the skill is not visible.\nClaude Code: /venture-evaluator | Codex: $venture-evaluator",
+      "stderr": ""
+    },
+    {
+      "step": "Check upgraded manifests and files",
+      "returncode": 0,
+      "stdout": "Venture Evaluator 1.1.0 | action=check | scope=user\nclaude: valid -> /tmp/venture-v1-migration-cwpu0txz/user home/.claude/skills/venture-evaluator\ncodex: valid -> /tmp/venture-v1-migration-cwpu0txz/user home/.agents/skills/venture-evaluator\nLocal file checks only; this does not test model behavior or host recognition.",
+      "stderr": ""
+    },
+    {
+      "step": "Both exact v1.0.0 SKILL.md backups preserved; project context unchanged",
+      "passed": true
+    },
+    {
+      "step": "Render HTML with upgraded installed script",
+      "returncode": 0,
+      "stdout": "CREATED: /tmp/venture-v1-migration-cwpu0txz/한글 프로젝트/migration-report.html\nStandalone HTML. Open locally in a browser. No external assets or background network requests.",
+      "stderr": ""
+    },
+    {
+      "step": "Check after rendering (installation unmodified)",
+      "returncode": 0,
+      "stdout": "Venture Evaluator 1.1.0 | action=check | scope=user\nclaude: valid -> /tmp/venture-v1-migration-cwpu0txz/user home/.claude/skills/venture-evaluator\ncodex: valid -> /tmp/venture-v1-migration-cwpu0txz/user home/.agents/skills/venture-evaluator\nLocal file checks only; this does not test model behavior or host recognition.",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,841 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Venture Evaluator HTML Report 1.1",
+  "description": "Validated narrative data, not executable HTML. All budgets in KRW. Current ratings and conditional scenarios remain distinct.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.1"
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "subtitle": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "report_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "prepared_for": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "author": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "classification": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "mode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "rubric_version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "input_scope": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "external_research": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "status": {
+          "enum": [
+            "assessment",
+            "sample",
+            "template"
+          ]
+        }
+      },
+      "required": [
+        "title",
+        "subtitle",
+        "date",
+        "report_id",
+        "prepared_for",
+        "author",
+        "classification",
+        "mode",
+        "rubric_version",
+        "input_scope",
+        "external_research",
+        "status"
+      ],
+      "additionalProperties": false
+    },
+    "summary": {
+      "type": "object",
+      "properties": {
+        "headline": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "thesis": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/recommendation"
+          },
+          "minItems": 1,
+          "maxItems": 150
+        },
+        "now": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "later": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "avoid": {
+          "type": "string",
+          "maxLength": 30000
+        }
+      },
+      "required": [
+        "headline",
+        "thesis",
+        "recommendations",
+        "now",
+        "later",
+        "avoid"
+      ],
+      "additionalProperties": false
+    },
+    "ventures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/venture"
+      },
+      "minItems": 1,
+      "maxItems": 150
+    },
+    "experiments": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/experiment"
+      },
+      "minItems": 0,
+      "maxItems": 150
+    },
+    "roadmap": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/phase"
+      },
+      "minItems": 0,
+      "maxItems": 150
+    },
+    "budget": {
+      "$ref": "#/$defs/budget"
+    },
+    "uncertainties": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/unknown"
+      },
+      "minItems": 0,
+      "maxItems": 150
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/change"
+      },
+      "minItems": 0,
+      "maxItems": 150
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      },
+      "minItems": 0,
+      "maxItems": 150
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 30000
+      },
+      "minItems": 0,
+      "maxItems": 150
+    }
+  },
+  "required": [
+    "schema_version",
+    "meta",
+    "summary",
+    "ventures",
+    "experiments",
+    "roadmap",
+    "uncertainties",
+    "sources",
+    "limitations"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "text",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "rating": {
+      "type": "object",
+      "properties": {
+        "current": {
+          "enum": [
+            "◎",
+            "○",
+            "△",
+            "×",
+            "?"
+          ]
+        },
+        "potential": {
+          "enum": [
+            "◎",
+            "○",
+            "△",
+            "×",
+            "?",
+            null
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "condition": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "current",
+        "reason",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "recommendation": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "title",
+        "body",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "venture": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,59}$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "category": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "stage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "confidence": {
+          "enum": [
+            "높음",
+            "중간",
+            "낮음",
+            "미확인"
+          ]
+        },
+        "confidence_note": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "thesis": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "verdict": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        },
+        "ratings": {
+          "type": "object",
+          "properties": {
+            "significant": {
+              "$ref": "#/$defs/rating"
+            },
+            "scalable": {
+              "$ref": "#/$defs/rating"
+            },
+            "sustainable": {
+              "$ref": "#/$defs/rating"
+            },
+            "frequency": {
+              "$ref": "#/$defs/rating"
+            },
+            "network": {
+              "$ref": "#/$defs/rating"
+            },
+            "retention": {
+              "$ref": "#/$defs/rating"
+            },
+            "standardization": {
+              "$ref": "#/$defs/rating"
+            },
+            "distribution": {
+              "$ref": "#/$defs/rating"
+            },
+            "demand": {
+              "$ref": "#/$defs/rating"
+            },
+            "monetization": {
+              "$ref": "#/$defs/rating"
+            },
+            "ai_defensibility": {
+              "$ref": "#/$defs/rating"
+            },
+            "customization": {
+              "$ref": "#/$defs/rating"
+            }
+          },
+          "required": [
+            "significant",
+            "scalable",
+            "sustainable",
+            "frequency",
+            "network"
+          ],
+          "additionalProperties": false
+        },
+        "strengths": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          },
+          "minItems": 0,
+          "maxItems": 150
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/claim"
+          },
+          "minItems": 0,
+          "maxItems": 150
+        },
+        "next_move": {
+          "$ref": "#/$defs/claim"
+        },
+        "transformations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/transformation"
+          },
+          "minItems": 0,
+          "maxItems": 150
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "category",
+        "stage",
+        "basis",
+        "confidence",
+        "confidence_note",
+        "thesis",
+        "verdict",
+        "evidence",
+        "ratings",
+        "strengths",
+        "risks",
+        "next_move"
+      ],
+      "additionalProperties": false
+    },
+    "transformation": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "to": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "why": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "requirements": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "cost": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "gate": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "why",
+        "requirements",
+        "cost",
+        "gate",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "experiment": {
+      "type": "object",
+      "properties": {
+        "venture_id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "hypothesis": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "audience": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "duration": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "method": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "success": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "stop": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "cost": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "venture_id",
+        "title",
+        "hypothesis",
+        "audience",
+        "duration",
+        "method",
+        "success",
+        "stop",
+        "cost",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "phase": {
+      "type": "object",
+      "properties": {
+        "period": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 30000
+          },
+          "minItems": 1,
+          "maxItems": 150
+        },
+        "gate": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "period",
+        "title",
+        "actions",
+        "gate",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "budget_item": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "low": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "high": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "cadence": {
+          "enum": [
+            "one_off",
+            "monthly"
+          ]
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "name",
+        "low",
+        "high",
+        "cadence",
+        "note",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "period_months": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "currency": {
+          "const": "KRW"
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "tax_note": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "founder_labor": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 30000
+          },
+          "minItems": 0,
+          "maxItems": 150
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/budget_item"
+          },
+          "minItems": 1,
+          "maxItems": 150
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "title",
+        "period_months",
+        "currency",
+        "basis",
+        "tax_note",
+        "founder_labor",
+        "exclusions",
+        "items",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "unknown": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "impact": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "next_step": {
+          "type": "string",
+          "maxLength": 30000
+        }
+      },
+      "required": [
+        "question",
+        "impact",
+        "next_step"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^E[0-9]{1,4}$"
+        },
+        "type": {
+          "enum": [
+            "관측",
+            "사용자진술",
+            "추론",
+            "가정",
+            "미확인"
+          ]
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "locator": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "date": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 30000
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "title",
+        "locator",
+        "date",
+        "summary"
+      ],
+      "additionalProperties": false
+    },
+    "change": {
+      "type": "object",
+      "properties": {
+        "item": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "before": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "after": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "reason": {
+          "type": "string",
+          "maxLength": 30000
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^E[0-9]{1,4}$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "item",
+        "before",
+        "after",
+        "reason",
+        "evidence"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

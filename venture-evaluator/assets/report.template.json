@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.1",
+  "meta": {
+    "title": "사업명\n전략 검토 보고서",
+    "subtitle": "입력 자료를 읽고 현재 구조와 조건부 개선 가능성을 평가합니다.",
+    "date": "2026-09-21",
+    "report_id": "VE / INPUT / 001",
+    "prepared_for": "요청자",
+    "author": "Venture Evaluator",
+    "classification": "내부 검토용",
+    "mode": "Evaluate · Founder",
+    "rubric_version": "gsr-plus-1.0",
+    "input_scope": "아직 입력 자료를 읽지 않았습니다.",
+    "external_research": "미실시",
+    "status": "template"
+  },
+  "summary": {
+    "headline": "판단할 자료가 아직 없습니다.",
+    "thesis": "이 파일은 빈 입력 양식입니다. 실제 문서와 근거를 읽고 채운 다음 status를 assessment로 바꾸세요.",
+    "recommendations": [
+      {
+        "title": "고객·문제·현재 상태를 확인합니다.",
+        "body": "확인할 수 없는 항목은 ?로 남깁니다.",
+        "evidence": []
+      }
+    ],
+    "now": "입력 자료 확인",
+    "later": "자료 확인 뒤 검증 설계",
+    "avoid": "가상 실적 입력"
+  },
+  "ventures": [
+    {
+      "id": "business",
+      "name": "사업명",
+      "category": "미확인",
+      "stage": "미확인",
+      "basis": "입력 자료 미확인",
+      "confidence": "미확인",
+      "confidence_note": "사업 자료를 읽기 전입니다.",
+      "thesis": "설명 입력 필요",
+      "verdict": "판단 보류",
+      "evidence": [],
+      "ratings": {
+        "significant": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "scalable": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "sustainable": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "frequency": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "network": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "retention": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "standardization": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "distribution": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "demand": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "monetization": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "ai_defensibility": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        },
+        "customization": {
+          "current": "?",
+          "reason": "자료 미확인",
+          "evidence": []
+        }
+      },
+      "strengths": [],
+      "risks": [],
+      "next_move": {
+        "text": "관련 자료를 확인합니다.",
+        "evidence": []
+      },
+      "transformations": []
+    }
+  ],
+  "experiments": [],
+  "roadmap": [],
+  "uncertainties": [
+    {
+      "question": "고객과 해결하려는 문제는 무엇인가?",
+      "impact": "현재 정보로는 평가할 수 없습니다.",
+      "next_step": "사업계획서 또는 대화 요약을 제공합니다."
+    }
+  ],
+  "sources": [],
+  "limitations": [
+    "빈 입력 양식입니다. 최종 보고서로 배포하지 마세요."
+  ]
+}

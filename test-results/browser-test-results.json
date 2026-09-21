@@ -1,0 +1,27 @@
+{
+  "browser": "144.0.7559.96",
+  "loader": "Playwright set_content (managed file URL navigation is restricted)",
+  "checks_passed": 11,
+  "checks": [
+    "Initial document and progressive enhancement",
+    "Table-of-contents navigation and active section",
+    "Current / conditional rating toggle",
+    "Rating link reveals and scrolls to collapsed detailed evidence",
+    "Expand and collapse every detailed scorecard",
+    "Source references navigate to the correct evidence",
+    "Responsive layout at 1440 / 1024 / 768 / 390 / 320 px, tables scroll internally",
+    "Print CSS hides controls, opens evidence, and fits the emulated width",
+    "After-print detail state restored",
+    "No-JavaScript reading, rating arrows, and native details",
+    "Zero page errors, console errors, and external requests"
+  ],
+  "errors": [],
+  "console_errors": [],
+  "requests": [],
+  "not_tested": [
+    "Actual Claude/Codex model execution",
+    "Safari/Firefox/Windows host behavior",
+    "Physical PDF pagination/export",
+    "Hosted deployment and remote access"
+  ]
+}
